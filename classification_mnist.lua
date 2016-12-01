@@ -6,7 +6,7 @@ local trainLabels = mnist.traindataset().label:add(1);
 testData = mnist.testdataset().data:float();
 testLabels = mnist.testdataset().label:add(1);
 
-print (#mnist.testdataset().label)
+print ('labels: ' .. mnist.testdataset().label)
 
 --We'll start by normalizing our data
 local mean = trainData:mean()
@@ -101,7 +101,7 @@ function forwardNet(data, labels, train, e)
     confusion:updateValids()
     local avgLoss = lossAcc / numBatches
     local avgError = 1 - confusion.totalValid
-	print('epoc: ' ..e, timer:time().real .. ' seconds')
+	print('epoc: ' .. e, timer:time().real .. ' seconds')
 
     return avgLoss, avgError, tostring(confusion)
 end
