@@ -78,12 +78,17 @@ function forwardNet(data, labels, train, e)
         numBatches = numBatches + 1
 	print('Number of batches:', numBatches)
         local x = data:narrow(1, i, batchSize):cuda()
+	print('Is it here?1')
         local yt = labels:narrow(1, i, batchSize):cuda()
+	print('Is it here?2')
         local y = model:forward(x)
+	print('Is it here?3')
         local err = criterion:forward(y, yt)
+	print('Is it here?4')
         lossAcc = lossAcc + err
+	print('Is it here?5')
         confusion:batchAdd(y,yt)
-        print('Is it here?1')       
+        print('Is it here?6')       
         if train then
             function feval()
                 model:zeroGradParameters() --zero grads
@@ -92,13 +97,13 @@ function forwardNet(data, labels, train, e)
             
                 return err, dE_dw
             end
-        print('Is it here?2')
+        print('Is it here?7')
             optim.sgd(feval, w, optimState)
         end
     end
     
     confusion:updateValids()
-	print('Is it here?3')
+	print('Is it here?8')
     local avgLoss = lossAcc / numBatches
     local avgError = 1 - confusion.totalValid
 	print('epoc: ' ..e, timer:time().real .. ' seconds')
