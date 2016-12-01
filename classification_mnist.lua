@@ -6,6 +6,8 @@ local trainLabels = mnist.traindataset().label:add(1);
 testData = mnist.testdataset().data:float();
 testLabels = mnist.testdataset().label:add(1);
 
+print (#mnist.testdataset().label)
+
 --We'll start by normalizing our data
 local mean = trainData:mean()
 local std = trainData:std()
