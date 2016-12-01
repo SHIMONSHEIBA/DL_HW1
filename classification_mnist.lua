@@ -87,7 +87,7 @@ function forwardNet(data, labels, train, e)
 	print('Is it here?4')
         lossAcc = lossAcc + err
 	print('Is it here?5')
-	print(y:dim(),yt:dim())
+	print(y:dim(),yt:dim(), yt:ge(1))
         confusion:batchAdd(y,yt)
         print('Is it here?6')       
         if train then
