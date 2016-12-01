@@ -67,7 +67,7 @@ function forwardNet(data, labels, train, e)
 	timer = torch.Timer()
 
     --another helpful function of optim is ConfusionMatrix
-    local confusion = optim.ConfusionMatrix(torch.range(0,9):totable())
+    local confusion = optim.ConfusionMatrix(torch.range(0,49):totable())
     local lossAcc = 0
     local numBatches = 0
     if train then
@@ -99,7 +99,7 @@ function forwardNet(data, labels, train, e)
     confusion:updateValids()
     local avgLoss = lossAcc / numBatches
     local avgError = 1 - confusion.totalValid
-	print('epoc: ' ..e, ' time: ' .. timer:time().real .. ' seconds')
+	print('epoc: ' ..e, timer:time().real .. ' seconds')
 
     return avgLoss, avgError, tostring(confusion)
 end
