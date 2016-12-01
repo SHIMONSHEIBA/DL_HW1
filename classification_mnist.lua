@@ -83,7 +83,7 @@ function forwardNet(data, labels, train, e)
         local err = criterion:forward(y, yt)
         lossAcc = lossAcc + err
         confusion:batchAdd(y,yt)
-        
+        print('Is it here?1')       
         if train then
             function feval()
                 model:zeroGradParameters() --zero grads
@@ -92,12 +92,13 @@ function forwardNet(data, labels, train, e)
             
                 return err, dE_dw
             end
-        
+        print('Is it here?2')
             optim.sgd(feval, w, optimState)
         end
     end
     
     confusion:updateValids()
+	print('Is it here?3')
     local avgLoss = lossAcc / numBatches
     local avgError = 1 - confusion.totalValid
 	print('epoc: ' ..e, timer:time().real .. ' seconds')
