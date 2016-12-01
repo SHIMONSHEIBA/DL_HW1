@@ -6,7 +6,6 @@ local trainLabels = mnist.traindataset().label:add(1);
 testData = mnist.testdataset().data:float();
 testLabels = mnist.testdataset().label:add(1);
 
-print ('labels: ', testLabels:nElement())
 
 --We'll start by normalizing our data
 local mean = trainData:mean()
@@ -28,7 +27,7 @@ require 'nn'
 require 'cunn'
 
 local inputSize = 28*28
-local outputSize = 50
+local outputSize = 10
 local layerSize = {inputSize, 64,128,256}
 
 model = nn.Sequential()
@@ -69,7 +68,7 @@ function forwardNet(data, labels, train, e)
 	timer = torch.Timer()
 
     --another helpful function of optim is ConfusionMatrix
-    local confusion = optim.ConfusionMatrix(torch.range(0,49):totable())
+    local confusion = optim.ConfusionMatrix(torch.range(0,9):totable())
     local lossAcc = 0
     local numBatches = 0
     if train then
