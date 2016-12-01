@@ -76,6 +76,7 @@ function forwardNet(data, labels, train, e)
     end
     for i = 1, data:size(1) - batchSize, batchSize do
         numBatches = numBatches + 1
+	print('Number of batches:', numBatches)
         local x = data:narrow(1, i, batchSize):cuda()
         local yt = labels:narrow(1, i, batchSize):cuda()
         local y = model:forward(x)
