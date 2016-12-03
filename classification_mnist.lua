@@ -27,7 +27,7 @@ require 'cunn'
 
 local inputSize = 28*28
 local outputSize = 10
-local layerSize = {inputSize, 64,64,128}
+local layerSize = {inputSize, 64,64,64,64}
 
 model = nn.Sequential()
 model:add(nn.View(28 * 28)) --reshapes the image into a vector without copy
@@ -147,7 +147,7 @@ end
 
 ---		### Introduce momentum, L2 regularization
 --reset net weights
-
+--[[
 model:apply(function(l) l:reset() end)
 
 optimState = {
@@ -163,13 +163,13 @@ end
 
 print('Training error: ' .. trainError[epochs], 'Training Loss: ' .. trainLoss[epochs])
 print('Test error: ' .. testError[epochs], 'Test Loss: ' .. testLoss[epochs])
-
+]]
 
 
 
 
 --- ### Insert a Dropout layer
-
+--[[
 model:insert(nn.Dropout(0.9):cuda(), 8)
 
 
@@ -187,7 +187,7 @@ gnuplot.plot({'trainLoss',trainLoss},{'testLoss',testLoss})
 gnuplot.xlabel('epochs')
 gnuplot.ylabel('Loss')
 gnuplot.plotflush()
-
+]]
 
 
 
