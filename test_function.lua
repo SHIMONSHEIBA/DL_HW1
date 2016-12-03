@@ -1,12 +1,7 @@
 local mnist = require 'mnist';
 
 function TestModel()
-	model = torch.load('ourModel')
-	print(tostring(model))
-	
-	testData = mnist.testdataset().data:float();
-	testLabels = mnist.testdataset().label:add(1);
-	
+	print('3')
 	local confusion = optim.ConfusionMatrix(torch.range(0,9):totable())
 	local lossAcc = 0
 	local numBatches = 0
@@ -30,4 +25,11 @@ function TestModel()
 
     return avgError
 end
-	
+
+print('1')
+model = torch.load('ourModel')
+print(tostring(model))
+print('2')
+testData = mnist.testdataset().data:float();
+testLabels = mnist.testdataset().label:add(1);
+testError[e] = TestModel()
