@@ -32,11 +32,11 @@ local layerSize = {inputSize,64,64,64,64}
 model = nn.Sequential()
 model:add(nn.View(28 * 28)) --reshapes the image into a vector without copy
 for i=1, #layerSize-1 do
-    model:add(nn.Linear(layerSize[i], layerSize[i+1]))
+    model:add(nn.Bilinear(layerSize[i], layerSize[i+1]))
     model:add(nn.ReLU())
 end
 
-model:add(nn.Linear(layerSize[#layerSize], outputSize))
+model:add(nn.Bilinear(layerSize[#layerSize], outputSize))
 model:add(nn.LogSoftMax())   -- f_i(x) = exp(x_i - shift) / sum_j exp(x_j - shift)
 
 
@@ -49,8 +49,8 @@ print('Number of parameters:', w:nElement()) --over-specified model
 
 ---- ### Classification criterion
 
---criterion = nn.ClassNLLCriterion():cuda()
-criterion = nn.MSECriterion():cuda()
+criterion = nn.ClassNLLCriterion():cuda()
+--criterion = nn.MSECriterion():cuda()
 
 ---	 ### predefined constants
 
