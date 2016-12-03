@@ -27,7 +27,7 @@ require 'cunn'
 
 local inputSize = 28*28
 local outputSize = 10
-local layerSize = {1,64,64,64,64}
+local layerSize = {1,64,64,64}
 
 model = nn.Sequential()
 --model:add(nn.View(28 * 28)) --reshapes the image into a vector without copy
@@ -52,9 +52,9 @@ print('Number of parameters:', w:nElement()) --over-specified model
 
 ---- ### Classification criterion
 
---criterion = nn.ClassNLLCriterion():cuda()
+criterion = nn.ClassNLLCriterion():cuda()
 --criterion = nn.MSECriterion():cuda()
-criterion = nn.CrossEntropyCriterion():cuda()
+--criterion = nn.CrossEntropyCriterion():cuda()
 ---	 ### predefined constants
 
 require 'optim'
