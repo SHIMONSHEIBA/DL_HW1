@@ -22,6 +22,8 @@ function TestModel()
     
     confusion:updateValids()
     local avgError = 1 - confusion.totalValid
+	
+    print(avgError)
 
     return avgError
 end
