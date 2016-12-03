@@ -49,9 +49,9 @@ print('Number of parameters:', w:nElement()) --over-specified model
 
 ---- ### Classification criterion
 
-criterion = nn.ClassNLLCriterion():cuda()
+--criterion = nn.ClassNLLCriterion():cuda()
 --criterion = nn.MSECriterion():cuda()
---criterion = nn.CrossEntropyCriterion():cuda()
+criterion = nn.CrossEntropyCriterion():cuda()
 ---	 ### predefined constants
 
 require 'optim'
