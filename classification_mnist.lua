@@ -149,6 +149,8 @@ for e = 1, epochs do
     end
 end
 
+torch.save('ourModel', model)
+
 
 
 ---		### Introduce momentum, L2 regularization
