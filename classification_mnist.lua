@@ -27,7 +27,7 @@ require 'cunn'
 
 local inputSize = 28*28
 local outputSize = 10
-local layerSize = {inputSize,32,32,32,32,32,32,32,32,32}
+local layerSize = {inputSize,64,64,128}
 
 model = nn.Sequential()
 model:add(nn.View(28 * 28)) --reshapes the image into a vector without copy
@@ -126,7 +126,7 @@ end
 --- ### Train the network on training set, evaluate on separate set
 
 
-epochs = 35
+epochs = 30
 
 trainLoss = torch.Tensor(epochs)
 testLoss = torch.Tensor(epochs)
