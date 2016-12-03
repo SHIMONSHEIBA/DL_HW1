@@ -27,7 +27,7 @@ require 'cunn'
 
 local inputSize = 28*28
 local outputSize = 10
-local layerSize = {inputSize,64,64,64,64}
+local layerSize = {inputSize,32,32,32,32,32,32,32,32,32}
 
 model = nn.Sequential()
 model:add(nn.View(28 * 28)) --reshapes the image into a vector without copy
@@ -49,16 +49,16 @@ print('Number of parameters:', w:nElement()) --over-specified model
 
 ---- ### Classification criterion
 
---criterion = nn.ClassNLLCriterion():cuda()
+criterion = nn.ClassNLLCriterion():cuda()
 --criterion = nn.MSECriterion():cuda()
-criterion = nn.CrossEntropyCriterion():cuda()
+--criterion = nn.CrossEntropyCriterion():cuda()
 ---	 ### predefined constants
 
 require 'optim'
 batchSize = 16
 
 optimState = {
-    learningRate = 0.1   
+    learningRate = 0.17   
 }
 
 --- ### Main evaluation + training function
@@ -126,7 +126,7 @@ end
 --- ### Train the network on training set, evaluate on separate set
 
 
-epochs = 40
+epochs = 35
 
 trainLoss = torch.Tensor(epochs)
 testLoss = torch.Tensor(epochs)
@@ -156,7 +156,7 @@ end
 model:apply(function(l) l:reset() end)
 
 optimState = {
-    learningRate = 0.1,
+    learningRate = 0.17,
     momentum = 0.9,
     weightDecay = 1e-3   
 }
