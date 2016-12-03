@@ -33,8 +33,8 @@ model = nn.Sequential()
 model:add(nn.View(28 * 28)) --reshapes the image into a vector without copy
 for i=1, #layerSize-1 do
     model:add(nn.Linear(layerSize[i], layerSize[i+1]))
-    model:add(nn.LogSoftMax())
     model:add(nn.LeakyReLU())
+    model:add(nn.SpatialAdaptiveMaxPooling())
 end
 
 model:add(nn.Linear(layerSize[#layerSize], outputSize))
@@ -150,7 +150,7 @@ for e = 1, epochs do
     end
 end
 
-torch.save('ourModel', model)
+torch.save('ourModel.dat', model)
 
 
 
