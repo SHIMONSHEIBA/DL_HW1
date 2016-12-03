@@ -27,7 +27,7 @@ require 'cunn'
 
 local inputSize = 28*28
 local outputSize = 10
-local layerSize = {inputSize,64, 64,128}
+local layerSize = {inputSize,64,64,64,64}
 
 model = nn.Sequential()
 model:add(nn.View(28 * 28)) --reshapes the image into a vector without copy
@@ -49,12 +49,13 @@ print('Number of parameters:', w:nElement()) --over-specified model
 
 ---- ### Classification criterion
 
-criterion = nn.ClassNLLCriterion():cuda()
+--criterion = nn.ClassNLLCriterion():cuda()
+criterion = nn.MSECriterion():cuda()
 
 ---	 ### predefined constants
 
 require 'optim'
-batchSize = 1
+batchSize = 16
 
 optimState = {
     learningRate = 0.1   
@@ -86,14 +87,14 @@ function forwardNet(data, labels, train, e)
 	--print('y type is:',type(y))
 	--print('Is it here?3')
         local err = criterion:forward(y, yt)
-	if numBatches == 1 then
-		print('error is:' , err)
-	end
+	--if numBatches == 1 then
+		--print('error is:' , err)
+	--end
 	--print('Is it here?4')
 	lossAcc = lossAcc + err
-	if numBatches == 1 then
-		print('lossAcc is:',lossAcc)
-	end
+	--if numBatches == 1 then
+		--print('lossAcc is:',lossAcc)
+	--end
 	--print('Is it here?5')
 	--print(y:dim(),yt:dim(),'y type is:', y.type,'yt type is:',yt.type)
         confusion:add(y,yt)
