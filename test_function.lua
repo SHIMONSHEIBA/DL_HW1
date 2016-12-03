@@ -27,7 +27,7 @@ function TestModel()
 end
 
 print('1')
-model = torch.load('ourModel')
+model = torch.load('ourModel.dat')
 print(tostring(model))
 print('2')
 testData = mnist.testdataset().data:float();
