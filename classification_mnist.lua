@@ -1,5 +1,7 @@
 local mnist = require 'mnist';
 local mnist = require 'mnist';
+luarocks make;
+local svm = require 'svm';
 
 local trainData = mnist.traindataset().data:float();
 local trainLabels = mnist.traindataset().label:add(1);
@@ -37,7 +39,7 @@ for i=1, #layerSize-1 do
 end
 
 model:add(nn.Linear(layerSize[#layerSize], outputSize))
-model:add(nn.LogSoftMax())   -- f_i(x) = exp(x_i - shift) / sum_j exp(x_j - shift)
+model:add(nn.LogSigmoid())   -- f_i(x) = exp(x_i - shift) / sum_j exp(x_j - shift)
 
 
 model:cuda() --ship to gpu
