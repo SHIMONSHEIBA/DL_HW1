@@ -27,7 +27,7 @@ require 'cunn'
 
 local inputSize = 28*28
 local outputSize = 10
-local layerSize = {inputSize, 64,128,256}
+local layerSize = {inputSize, 32,64, 64, 128}
 
 model = nn.Sequential()
 model:add(nn.View(28 * 28)) --reshapes the image into a vector without copy
@@ -54,7 +54,7 @@ criterion = nn.ClassNLLCriterion():cuda()
 ---	 ### predefined constants
 
 require 'optim'
-batchSize = 16
+batchSize = 2
 
 optimState = {
     learningRate = 0.1   
