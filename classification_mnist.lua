@@ -1,7 +1,5 @@
 local mnist = require 'mnist';
 local mnist = require 'mnist';
-luarocks make;
-local svm = require 'svm';
 
 local trainData = mnist.traindataset().data:float();
 local trainLabels = mnist.traindataset().label:add(1);
