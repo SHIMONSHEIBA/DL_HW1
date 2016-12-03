@@ -54,7 +54,7 @@ criterion = nn.ClassNLLCriterion():cuda()
 ---	 ### predefined constants
 
 require 'optim'
-batchSize = 16
+batchSize = 1
 
 optimState = {
     learningRate = 0.1   
@@ -86,6 +86,7 @@ function forwardNet(data, labels, train, e)
 	--print('y type is:',type(y))
 	--print('Is it here?3')
         local err = criterion:forward(y, yt)
+	print(err)
 	--print('Is it here?4')
         lossAcc = lossAcc + err
 	--print('lossAcc is:',lossAcc)
