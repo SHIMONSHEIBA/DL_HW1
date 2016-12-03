@@ -27,7 +27,7 @@ require 'cunn'
 
 local inputSize = 28*28
 local outputSize = 10
-local layerSize = {inputSize,64,64,128}
+local layerSize = {inputSize,64,64,64,64}
 
 model = nn.Sequential()
 model:add(nn.View(28 * 28)) --reshapes the image into a vector without copy
@@ -58,7 +58,7 @@ require 'optim'
 batchSize = 16
 
 optimState = {
-    learningRate = 0.07
+    learningRate = 0.05
 }
 
 --- ### Main evaluation + training function
@@ -156,7 +156,7 @@ end
 model:apply(function(l) l:reset() end)
 
 optimState = {
-    learningRate = 0.07,
+    learningRate = 0.05,
     momentum = 0.9,
     weightDecay = 1e-3   
 }
