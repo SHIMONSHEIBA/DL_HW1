@@ -27,10 +27,11 @@ require 'cunn'
 
 local inputSize = 28*28
 local outputSize = 10
-local layerSize = {inputSize,64,64,64,64}
+local layerSize = {1,64,64,64,64}
 
 model = nn.Sequential()
-model:add(nn.View(28 * 28)) --reshapes the image into a vector without copy
+--model:add(nn.View(28 * 28)) --reshapes the image into a vector without copy
+model:add(nn.Reshape(1,28,28))
 for i=1, #layerSize-1 do
     --model:add(nn.Linear(layerSize[i], layerSize[i+1]))
     model:add(nn.SpatialConvolution(layerSize[i],layerSize[i+1],3,3,1,1,1,1))
