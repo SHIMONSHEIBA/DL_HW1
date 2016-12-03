@@ -97,7 +97,7 @@ function forwardNet(data, labels, train, e)
 	--end
 	--print('Is it here?5')
 	--print(y:dim(),yt:dim(),'y type is:', y.type,'yt type is:',yt.type)
-        confusion:add(y,yt)
+        confusion:batchAdd(y,yt)
         --print('Is it here?6')       
         if train then
             function feval()
