@@ -58,7 +58,7 @@ require 'optim'
 batchSize = 16
 
 optimState = {
-    learningRate = 0.17   
+    learningRate = 0.07
 }
 
 --- ### Main evaluation + training function
@@ -156,7 +156,7 @@ end
 model:apply(function(l) l:reset() end)
 
 optimState = {
-    learningRate = 0.17,
+    learningRate = 0.07,
     momentum = 0.9,
     weightDecay = 1e-3   
 }
