@@ -27,19 +27,19 @@ require 'cunn'
 
 local inputSize = 28*28
 local outputSize = 10
-local layerSize = {1,64,64,64}
+local layerSize = {inputSize,64,64,64,64}
 
 model = nn.Sequential()
---model:add(nn.View(28 * 28)) --reshapes the image into a vector without copy
-model:add(nn.Reshape(1,28,28))
+model:add(nn.View(28 * 28)) --reshapes the image into a vector without copy
+--model:add(nn.Reshape(1,28,28))
 for i=1, #layerSize-1 do
-    --model:add(nn.Linear(layerSize[i], layerSize[i+1]))
-    model:add(nn.SpatialConvolution(layerSize[i],layerSize[i+1],3,3,1,1,1,1))
+    model:add(nn.Linear(layerSize[i], layerSize[i+1]))
+    --model:add(nn.SpatialConvolution(layerSize[i],layerSize[i+1],3,3,1,1,1,1))
     model:add(nn.LeakyReLU())
 end
 
-model:add(nn.SpatialConvolution(layerSize[#layerSize],outputSize,3,3,1,1,1,1))
---model:add(nn.Linear(layerSize[#layerSize], outputSize))
+--model:add(nn.SpatialConvolution(layerSize[#layerSize],outputSize,3,3,1,1,1,1))
+model:add(nn.Linear(layerSize[#layerSize], outputSize))
 model:add(nn.LogSoftMax())   -- f_i(x) = exp(x_i - shift) / sum_j exp(x_j - shift)
 
 
@@ -52,13 +52,13 @@ print('Number of parameters:', w:nElement()) --over-specified model
 
 ---- ### Classification criterion
 
-criterion = nn.ClassNLLCriterion():cuda()
+--criterion = nn.ClassNLLCriterion():cuda()
 --criterion = nn.MSECriterion():cuda()
---criterion = nn.CrossEntropyCriterion():cuda()
+criterion = nn.CrossEntropyCriterion():cuda()
 ---	 ### predefined constants
 
 require 'optim'
-batchSize = 16
+batchSize = 128
 
 optimState = {
     learningRate = 0.05
