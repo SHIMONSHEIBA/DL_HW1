@@ -37,7 +37,7 @@ for i=1, #layerSize-1 do
 end
 
 model:add(nn.Linear(layerSize[#layerSize], outputSize))
-model:add(nn.LogSigmoid())   -- f_i(x) = exp(x_i - shift) / sum_j exp(x_j - shift)
+model:add(nn.LogSoftMax())   -- f_i(x) = exp(x_i - shift) / sum_j exp(x_j - shift)
 
 
 model:cuda() --ship to gpu
