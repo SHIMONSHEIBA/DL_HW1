@@ -155,7 +155,7 @@ end
 torch.save('ourModel.dat', model)
 
 
-
+--[[
 ---		### Introduce momentum, L2 regularization
 --reset net weights
 model:apply(function(l) l:reset() end)
@@ -178,9 +178,9 @@ print('Test error: ' .. testError[epochs], 'Test Loss: ' .. testLoss[epochs])
 
 
 --- ### Insert a Dropout layer
---[[
-model:insert(nn.Dropout(0.9):cuda(), 8)
 
+model:insert(nn.Dropout(0.9):cuda(), 8)
+]]
 
 
 
@@ -196,7 +196,7 @@ gnuplot.plot({'trainLoss',trainLoss},{'testLoss',testLoss})
 gnuplot.xlabel('epochs')
 gnuplot.ylabel('Loss')
 gnuplot.plotflush()
-]]
+
 
 
 
