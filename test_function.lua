@@ -1,4 +1,4 @@
-function TestModel(testSet)
+function TestModel()
 	model = torch.load('ourModel.dat')
 	
 	testData = testSet.data:float();
