@@ -32,11 +32,11 @@ local layerSize = {inputSize,64,64,64,64}
 model = nn.Sequential()
 model:add(nn.View(28 * 28)) --reshapes the image into a vector without copy
 for i=1, #layerSize-1 do
-    model:add(nn.Bilinear(layerSize[i], layerSize[i+1]))
-    model:add(nn.ReLU())
+    model:add(nn.Linear(layerSize[i], layerSize[i+1]))
+    model:add(nn.LeakyReLU())
 end
 
-model:add(nn.Bilinear(layerSize[#layerSize], outputSize))
+model:add(nn.Linear(layerSize[#layerSize], outputSize))
 model:add(nn.LogSoftMax())   -- f_i(x) = exp(x_i - shift) / sum_j exp(x_j - shift)
 
 
