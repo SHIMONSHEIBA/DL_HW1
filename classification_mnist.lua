@@ -55,7 +55,7 @@ criterion = nn.CrossEntropyCriterion():cuda()
 ---	 ### predefined constants
 
 require 'optim'
-batchSize = 8
+batchSize = 16
 
 optimState = {
     learningRate = 0.1   
