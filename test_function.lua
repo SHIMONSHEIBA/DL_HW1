@@ -2,6 +2,7 @@ local mnist = require 'mnist';
 
 function TestModel()
 	model = torch.load('ourModel.dat')
+	print(tostring(model))
 	
 	testData = mnist.testdataset().data:float();
 	testLabels = mnist.testdataset().label:add(1);
