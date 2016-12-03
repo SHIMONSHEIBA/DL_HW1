@@ -86,9 +86,11 @@ function forwardNet(data, labels, train, e)
 	--print('y type is:',type(y))
 	--print('Is it here?3')
         local err = criterion:forward(y, yt)
-	print('error is:' , err)
+	if numBatches == 0 then
+		print('error is:' , err)
 	--print('Is it here?4')
-        lossAcc = lossAcc + err
+	if numBatches == 0 then
+        	lossAcc = lossAcc + err
 	print('lossAcc is:',lossAcc)
 	--print('Is it here?5')
 	--print(y:dim(),yt:dim(),'y type is:', y.type,'yt type is:',yt.type)
