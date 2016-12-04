@@ -61,7 +61,8 @@ batchSize = 16
 --Declare the parameters for optim function
 optimState = {
     learningRate = 0.05
-    learningRateDecay = 
+    learningRateDecay = 0.9
+    weightDecay = 1e-3
 }
 
 --- ### Main evaluation + training function
