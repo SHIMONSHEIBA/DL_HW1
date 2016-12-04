@@ -6,7 +6,6 @@ require 'optim'
 model = torch.load('ourModel.model')
 
 local trainData = mnist.traindataset().data:float();
-local trainLabels = mnist.traindataset().label:add(1);
 testData = mnist.testdataset().data:float();
 testLabels = mnist.testdataset().label:add(1);
 
