@@ -3,7 +3,7 @@ require 'nn'
 require 'cunn'
 require 'optim'
 
-model = torch.load('ourModel.model')
+model = torch.load('ourModel.t7')
 
 local trainData = mnist.traindataset().data:float();
 testData = mnist.testdataset().data:float();
