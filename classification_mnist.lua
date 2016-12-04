@@ -59,7 +59,7 @@ require 'optim'
 batchSize = 16
 
 optimState = {
-	learningRate = 0.001
+	learningRate = 0.05
 }
 
 --- ### Main evaluation + training function
