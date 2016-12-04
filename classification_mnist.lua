@@ -137,7 +137,7 @@ for e = 1, epochs do
 end
 
 --save th model we trained
-torch.save('ourModel.model', model)
+torch.save('ourModel.t7', model)
 
 
 -- ********************* Plots *********************
