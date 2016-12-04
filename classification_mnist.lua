@@ -38,6 +38,7 @@ for i=1, #layerSize-1 do
     model:add(nn.LeakyReLU())
 end
 
+model:add(nn.Dropout(0.2):cuda(), 8)
 --model:add(nn.SpatialConvolution(layerSize[#layerSize],outputSize,3,3,1,1,1,1))
 model:add(nn.Linear(layerSize[#layerSize], outputSize))
 model:add(nn.LogSoftMax())   -- f_i(x) = exp(x_i - shift) / sum_j exp(x_j - shift)
@@ -77,6 +78,9 @@ function forwardNet(data, labels, train, e)
     if train then
         --set network into training mode
         model:training()
+    end
+    else
+        model:evaluate() -- turn of drop-out
     end
     for i = 1, data:size(1) - batchSize, batchSize do
         numBatches = numBatches + 1
@@ -129,7 +133,7 @@ end
 --- ### Train the network on training set, evaluate on separate set
 
 
-epochs = 30
+epochs = 100
 
 trainLoss = torch.Tensor(epochs)
 testLoss = torch.Tensor(epochs)
@@ -152,7 +156,7 @@ for e = 1, epochs do
     end
 end
 
-torch.save('ourModel.dat', model)
+torch.save('ourModel.t7', model)
 
 
 --[[
@@ -191,10 +195,16 @@ model:insert(nn.Dropout(0.9):cuda(), 8)
 
 require 'gnuplot'
 local range = torch.range(1, epochs)
-gnuplot.pngfigure('test.png')
+gnuplot.pngfigure('loss.png')
 gnuplot.plot({'trainLoss',trainLoss},{'testLoss',testLoss})
 gnuplot.xlabel('epochs')
 gnuplot.ylabel('Loss')
+gnuplot.plotflush()
+
+gnuplot.pngfigure('error.png')
+gnuplot.plot({'trainError',trainError},{'testError',testError})
+gnuplot.xlabel('epochs')
+gnuplot.ylabel('Error')
 gnuplot.plotflush()
 
 
