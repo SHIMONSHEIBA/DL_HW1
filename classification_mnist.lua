@@ -100,7 +100,7 @@ function forwardNet(data, labels, train, e)
                 return err, dE_dw
             end
 		--optimization function to use
-            optim.adargad(feval, w, optimState)
+            optim.adagrad(feval, w, optimState)
         end
     end
     
