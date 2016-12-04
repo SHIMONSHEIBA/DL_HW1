@@ -1,7 +1,7 @@
 local mnist = require 'mnist';
 
 print('1')
-model = torch.load('ourModel.t7')
+model = torch.load('ourModel.model')
 print(tostring(model))
 print('2')
 testData = mnist.testdataset().data:float();
