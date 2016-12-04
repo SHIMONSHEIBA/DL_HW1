@@ -1,4 +1,6 @@
 local mnist = require 'mnist';
+require 'nn'
+require 'cunn'
 
 print('1')
 model = torch.load('ourModel.model')
