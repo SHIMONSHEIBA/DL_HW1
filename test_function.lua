@@ -5,8 +5,16 @@ require 'optim'
 
 model = torch.load('ourModel.model')
 
+local trainData = mnist.traindataset().data:float();
+local trainLabels = mnist.traindataset().label:add(1);
 testData = mnist.testdataset().data:float();
 testLabels = mnist.testdataset().label:add(1);
+
+--normalizing our data
+local mean = trainData:mean()
+local std = trainData:std()
+trainData:add(-mean):div(std); 
+testData:add(-mean):div(std);
 
 function TestModel()
 	
