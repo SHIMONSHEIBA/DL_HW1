@@ -78,7 +78,6 @@ function forwardNet(data, labels, train, e)
     if train then
         --set network into training mode
         model:training()
-    end
     else
         model:evaluate() -- turn of drop-out
     end
