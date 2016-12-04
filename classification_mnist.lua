@@ -58,14 +58,9 @@ criterion = nn.CrossEntropyCriterion():cuda()
 require 'optim'
 batchSize = 16
 
---Declare the parameters for optim function
---[[optimState = {
-    learningRate = 0.001,
-    learningRateDecay = 0,
-    weightDecay = 0
-}]]
-
-optimState = {}
+optimState = {
+	learningRate = 0.001
+}
 
 --- ### Main evaluation + training function
 
@@ -102,7 +97,7 @@ function forwardNet(data, labels, train, e)
                 return err, dE_dw
             end
 		--optimization function to use
-            optim.adam(feval, w, optimState)
+            optim.sgd(feval, w, optimState)
         end
     end
     
@@ -119,7 +114,7 @@ end
 --- ### Train the network on training set, evaluate on separate set
 
 
-epochs = 100
+epochs = 75
 
 trainLoss = torch.Tensor(epochs)
 testLoss = torch.Tensor(epochs)
@@ -134,11 +129,10 @@ for e = 1, epochs do
     trainLoss[e], trainError[e] = forwardNet(trainData, trainLabels, true, e)
     testLoss[e], testError[e], confusion = forwardNet(testData, testLabels, false, e)
     
-    if e % 5 == 0 then
+    if e > 55 then
         print('Epoch ' .. e .. ':')
         print('Training error: ' .. trainError[e], 'Training Loss: ' .. trainLoss[e])
         print('Test error: ' .. testError[e], 'Test Loss: ' .. testLoss[e])
-        print(confusion)
     end
 end
 
