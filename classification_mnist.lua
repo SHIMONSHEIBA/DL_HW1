@@ -59,11 +59,13 @@ require 'optim'
 batchSize = 16
 
 --Declare the parameters for optim function
-optimState = {
+--[[optimState = {
     learningRate = 0.001,
     learningRateDecay = 0,
     weightDecay = 0
-}
+}]]
+
+optimState = {}
 
 --- ### Main evaluation + training function
 
