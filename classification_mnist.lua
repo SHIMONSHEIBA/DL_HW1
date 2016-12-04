@@ -155,7 +155,7 @@ for e = 1, epochs do
     end
 end
 
-torch.save('ourModel.t7', model)
+torch.save('ourModel.model', model)
 
 
 --[[
