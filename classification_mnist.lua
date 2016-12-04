@@ -27,7 +27,7 @@ require 'cunn'
 
 local inputSize = 28*28
 local outputSize = 10
-local layerSize = {inputSize,64,64,64,64}
+local layerSize = {inputSize,64,64,128}
 
 model = nn.Sequential()
 model:add(nn.View(28 * 28)) --reshapes the image into a vector without copy
@@ -137,7 +137,7 @@ for e = 1, epochs do
 end
 
 --save th model we trained
-torch.save('ourModel2.t7', model)
+torch.save('ourModel3.t7', model)
 
 
 -- ********************* Plots *********************
