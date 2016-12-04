@@ -8,11 +8,9 @@ print(tostring(model))
 print('2')
 testData = mnist.testdataset().data:float();
 testLabels = mnist.testdataset().label:add(1);
-testError = TestModel()
-print(testError)
-
+print('3')
 function TestModel()
-	print('3')
+	print('4')
 	local confusion = optim.ConfusionMatrix(torch.range(0,9):totable())
 	local lossAcc = 0
 	local numBatches = 0
@@ -33,6 +31,10 @@ function TestModel()
     
     confusion:updateValids()
     local avgError = 1 - confusion.totalValid
-	
+    print ('5)
     return avgError
 end
+
+print ('6')
+testError = TestModel()
+print(testError)
