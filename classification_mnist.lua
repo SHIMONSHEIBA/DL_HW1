@@ -129,7 +129,7 @@ for e = 1, epochs do
     trainLoss[e], trainError[e] = forwardNet(trainData, trainLabels, true, e)
     testLoss[e], testError[e], confusion = forwardNet(testData, testLabels, false, e)
     
-    if e > 55 then
+    if e > 55 or e % 5 ==0 then
         print('Epoch ' .. e .. ':')
         print('Training error: ' .. trainError[e], 'Training Loss: ' .. trainLoss[e])
         print('Test error: ' .. testError[e], 'Test Loss: ' .. testLoss[e])
