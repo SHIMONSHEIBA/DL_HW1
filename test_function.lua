@@ -17,6 +17,8 @@ function TestModel()
 	local numBatches = 0
 	local batchSize = 16
 	
+	criterion = nn.CrossEntropyCriterion():cuda()
+	
 	model:evaluate()
 	
     for i = 1, testData:size(1) - batchSize, batchSize do
