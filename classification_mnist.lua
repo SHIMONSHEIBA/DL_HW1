@@ -36,15 +36,6 @@ for i=1, #layerSize-1 do
     model:add(nn.LeakyReLU())
 end
 
---model:add(nn.Linear(inputSize,64))
---model:add(nn.LeakyReLU())
---model:add(nn.Linear(64,64))
---model:add(nn.LeakyReLU())
---model:add(nn.Linear(64,64))
---model:add(nn.LeakyReLU())
---model:add(nn.Dropout(0.2):cuda(), 8)
---model:add(nn.Linear(64,64))
---model:add(nn.LeakyReLU())
 --add dropout function before the last linear layer
 model:add(nn.Dropout(0.2):cuda(), 8)
 model:add(nn.Linear(layerSize[#layerSize], outputSize))
@@ -146,7 +137,7 @@ for e = 1, epochs do
 end
 
 --save th model we trained
-torch.save('ourModel3.t7', model)
+torch.save('ClassifierModel.t7', model)
 
 
 -- ********************* Plots *********************
