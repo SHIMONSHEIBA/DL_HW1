@@ -45,4 +45,4 @@ end
 
 testError = TestModel()
 print('The test error is: ' .. testError)
-print('The accuracy of the model is: ' .. 1-testError)
+print('The accuracy of the model is: ' .. (1-testError)*100 .. '%')
