@@ -46,7 +46,7 @@ end
 --model:add(nn.Linear(64,64))
 --model:add(nn.LeakyReLU())
 --add dropout function before the last linear layer
-model:add(nn.Dropout(0.4):cuda(), 8)
+model:add(nn.Dropout(0.2):cuda(), 8)
 model:add(nn.Linear(layerSize[#layerSize], outputSize))
 model:add(nn.LogSoftMax())   -- f_i(x) = exp(x_i - shift) / sum_j exp(x_j - shift)
 
