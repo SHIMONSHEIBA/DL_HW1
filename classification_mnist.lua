@@ -36,7 +36,7 @@ model:add(nn.View(28 * 28)) --reshapes the image into a vector without copy
 --    model:add(nn.LeakyReLU())
 --end
 
-model:add(nn.Linear(10,64))
+model:add(nn.Linear(inputSize,64))
 model:add(nn.LeakyReLU())
 model:add(nn.Linear(64,64))
 model:add(nn.LeakyReLU())
