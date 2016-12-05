@@ -31,20 +31,20 @@ local layerSize = {inputSize,64,64,64}
 
 model = nn.Sequential()
 model:add(nn.View(28 * 28)) --reshapes the image into a vector without copy
-for i=1, #layerSize-1 do
-    model:add(nn.Linear(layerSize[i], layerSize[i+1]))
-    model:add(nn.LeakyReLU())
-end
+--for i=1, #layerSize-1 do
+  --  model:add(nn.Linear(layerSize[i], layerSize[i+1]))
+    --model:add(nn.LeakyReLU())
+--end
 
---model:add(nn.Linear(inputSize,64))
---model:add(nn.LeakyReLU())
---model:add(nn.Linear(64,64))
---model:add(nn.LeakyReLU())
---model:add(nn.Linear(64,64))
---model:add(nn.LeakyReLU())
---model:add(nn.Dropout(0.5):cuda(), 8)
---model:add(nn.Linear(64,64))
---model:add(nn.LeakyReLU())
+model:add(nn.Linear(inputSize,64))
+model:add(nn.LeakyReLU())
+model:add(nn.Linear(64,64))
+model:add(nn.LeakyReLU())
+model:add(nn.Linear(64,64))
+model:add(nn.LeakyReLU())
+model:add(nn.Dropout(0.2):cuda(), 8)
+model:add(nn.Linear(64,64))
+model:add(nn.LeakyReLU())
 --add dropout function before the last linear layer
 model:add(nn.Dropout(0.2):cuda(), 8)
 model:add(nn.Linear(layerSize[#layerSize], outputSize))
