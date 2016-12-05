@@ -42,7 +42,7 @@ model:add(nn.Linear(64,64))
 model:add(nn.LeakyReLU())
 model:add(nn.Linear(64,64))
 model:add(nn.LeakyReLU())
-model:add(nn.Dropout(0.2):cuda(), 8)
+model:add(nn.Dropout(0.5):cuda(), 8)
 model:add(nn.Linear(64,64))
 model:add(nn.LeakyReLU())
 --add dropout function before the last linear layer
