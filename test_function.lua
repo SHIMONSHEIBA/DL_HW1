@@ -44,4 +44,5 @@ end
 
 
 testError = TestModel()
-print(testError)
+print('The test error is: ' .. testError)
+print('The accuracy of the model is: ' .. 1-testError)
