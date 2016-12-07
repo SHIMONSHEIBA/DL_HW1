@@ -36,7 +36,7 @@ for i=1, #layerSize-1 do
 end
 
 --add dropout function before the last linear layer
-model:add(nn.Dropout(0.2):cuda(), 8)
+--model:add(nn.Dropout(0.2):cuda(), 8)
 model:add(nn.Linear(layerSize[#layerSize], outputSize))
 model:add(nn.LogSoftMax())   -- f_i(x) = exp(x_i - shift) / sum_j exp(x_j - shift)
 
