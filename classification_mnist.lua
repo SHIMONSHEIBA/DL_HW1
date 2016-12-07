@@ -26,7 +26,7 @@ require 'cunn'
 
 local inputSize = 28*28
 local outputSize = 10
-local layerSize = {inputSize,64,64,64}
+local layerSize = {inputSize,64,64,64,64}
 
 model = nn.Sequential()
 model:add(nn.View(28 * 28)) --reshapes the image into a vector without copy
@@ -36,7 +36,7 @@ for i=1, #layerSize-1 do
 end
 
 --add dropout function before the last linear layer
---model:add(nn.Dropout(0.2):cuda(), 8)
+model:add(nn.Dropout(0.2):cuda(), 8)
 model:add(nn.Linear(layerSize[#layerSize], outputSize))
 model:add(nn.LogSoftMax())   -- f_i(x) = exp(x_i - shift) / sum_j exp(x_j - shift)
 
@@ -136,7 +136,7 @@ for e = 1, epochs do
 end
 
 --save th model we trained
-torch.save('ClassifierModel.t7', model)
+torch.save('ClassifierModel5.t7', model)
 
 
 -- ********************* Plots *********************
