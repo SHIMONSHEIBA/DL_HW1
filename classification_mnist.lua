@@ -1,5 +1,4 @@
 local mnist = require 'mnist';
-local mnist = require 'mnist';
 
 local trainData = mnist.traindataset().data:float();
 local trainLabels = mnist.traindataset().label:add(1);
